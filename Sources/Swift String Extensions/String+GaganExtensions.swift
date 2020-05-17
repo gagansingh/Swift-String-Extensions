@@ -11,22 +11,6 @@ enum GaganExtensionsError: Error {
 }
 
 extension String {
-    func replacingNonLettersWith(_ replacement: String) throws -> String {
-        guard replacement.count == 1 else { throw GaganExtensionsError.runtimeError("replacement string much be one character long") }
-        let c = Character(replacement)
-        return replacingNonLettersWith(c)
-    }
-
-    func replacingNonLettersWith(_ replacement: Character) -> String {
-        return replacingCharacters(inSet: CharacterSet.letters, with: replacement)
-    }
-
-    func replacingCharacters(inSet set: CharacterSet, with replacement: String) throws -> String {
-        guard replacement.count == 1 else { throw GaganExtensionsError.runtimeError("replacement string much be one character long") }
-        let c = Character(replacement)
-        return replacingCharacters(inSet: set, with: c)
-    }
-
     func replacingCharacters(inSet set: CharacterSet, with replacement: Character) -> String {
         let allowedCharacters = set 
         let newString = self.map { (c) -> Character in
@@ -35,5 +19,10 @@ extension String {
             return charactersUnicodeScalarsContainsNotAllowed ? replacement : c
         }
         return String(newString)
+    }
+
+    func removingCharacters(notInSet: CharacterSet, replacedBy: String = "") -> String {
+        let seperated = self.components(separatedBy: notInSet.inverted)
+        return seperated.joined(separator: replacedBy)
     }
 }
