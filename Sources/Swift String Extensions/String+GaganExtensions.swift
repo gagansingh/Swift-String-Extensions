@@ -4,6 +4,8 @@
 //  Created by Gagan Singh on 5/17/20.
 //
 
+import Foundation
+
 enum GaganExtensionsError: Error {
     case runtimeError(String)
 }
