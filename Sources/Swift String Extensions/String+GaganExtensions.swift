@@ -10,7 +10,7 @@ enum GaganExtensionsError: Error {
     case runtimeError(String)
 }
 
-extension String {
+public extension String {
     func replacingCharacters(inSet set: CharacterSet, with replacement: Character) -> String {
         let allowedCharacters = set 
         let newString = self.map { (c) -> Character in
